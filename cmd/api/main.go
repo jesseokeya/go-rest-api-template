@@ -13,7 +13,6 @@ import (
 	"github.com/jesseokeya/go-rest-api-template/config"
 	"github.com/jesseokeya/go-rest-api-template/cronjob"
 	"github.com/jesseokeya/go-rest-api-template/data"
-	"github.com/jesseokeya/go-rest-api-template/lib/connect"
 	"github.com/jesseokeya/go-rest-api-template/lib/session"
 	"github.com/jesseokeya/go-rest-api-template/server"
 	"github.com/robfig/cron/v3"
@@ -46,7 +45,7 @@ func main() {
 	}
 
 	// [connect]
-	connect.Configure(conf.Connect)
+	// connect.Configure(conf.Connect)
 
 	// [jwt]
 	tokAuth := session.Setup(conf.JWT)
