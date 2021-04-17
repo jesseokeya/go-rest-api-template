@@ -62,7 +62,6 @@ func (u *User) BeforeCreate(sess db.Session) error {
 	}
 	u.UpdatedAt = nil
 	u.CreatedAt = GetTimeUTCPointer()
-	u.Status = UserStatusIncomplete
 	return nil
 }
 
