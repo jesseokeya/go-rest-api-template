@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/clout-jam/api/data"
-	"github.com/clout-jam/api/data/presenter"
-	"github.com/clout-jam/api/lib/connect"
-	"github.com/clout-jam/api/server/api"
 	"github.com/go-chi/render"
 	"github.com/goware/emailx"
+	"github.com/jesseokeya/go-rest-api-template/data"
+	"github.com/jesseokeya/go-rest-api-template/data/presenter"
+	"github.com/jesseokeya/go-rest-api-template/lib/connect"
+	"github.com/jesseokeya/go-rest-api-template/server/api"
 	"github.com/rs/zerolog/log"
 	"github.com/upper/db/v4"
 )

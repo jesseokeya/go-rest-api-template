@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/clout-jam/api/data"
-	"github.com/clout-jam/api/lib/connect"
-	"github.com/clout-jam/api/server/api"
 	"github.com/go-chi/render"
+	"github.com/jesseokeya/go-rest-api-template/data"
+	"github.com/jesseokeya/go-rest-api-template/lib/connect"
+	"github.com/jesseokeya/go-rest-api-template/server/api"
 	"github.com/upper/db/v4"
 	"golang.org/x/crypto/bcrypt"
 )

@@ -5,9 +5,9 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/clout-jam/api/data"
-	"github.com/clout-jam/api/server/api"
 	"github.com/go-chi/jwtauth"
+	"github.com/jesseokeya/go-rest-api-template/data"
+	"github.com/jesseokeya/go-rest-api-template/server/api"
 	"github.com/lestrrat-go/jwx/jwt"
 	"github.com/upper/db/v4"
 )

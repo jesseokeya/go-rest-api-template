@@ -10,13 +10,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/clout-jam/api/config"
-	"github.com/clout-jam/api/cronjob"
-	"github.com/clout-jam/api/data"
-	"github.com/clout-jam/api/lib/connect"
-	"github.com/clout-jam/api/lib/session"
-	"github.com/clout-jam/api/server"
-	"github.com/clout-jam/api/storage"
+	"github.com/jesseokeya/go-rest-api-template/config"
+	"github.com/jesseokeya/go-rest-api-template/cronjob"
+	"github.com/jesseokeya/go-rest-api-template/data"
+	"github.com/jesseokeya/go-rest-api-template/lib/connect"
+	"github.com/jesseokeya/go-rest-api-template/lib/session"
+	"github.com/jesseokeya/go-rest-api-template/server"
 	"github.com/robfig/cron/v3"
 	"github.com/rs/zerolog/log"
 	"github.com/zenazn/goji/graceful"
@@ -49,9 +48,6 @@ func main() {
 	// [connect]
 	connect.Configure(conf.Connect)
 
-	// [storage]
-	storage.Setup(conf.Storage)
-
 	// [jwt]
 	tokAuth := session.Setup(conf.JWT)
 
@@ -59,8 +55,7 @@ func main() {
 	var c *cron.Cron
 	if conf.Environment != "development" {
 		c = cron.New()
-		c.AddFunc("@every 15m", cronjob.SyncSegmentUserIdentify)
-		c.AddFunc("@every 1m", cronjob.UpdateUserLessons)
+		c.AddFunc("@every 15m", cronjob.Run)
 		c.Start()
 
 		for _, v := range c.Entries() {

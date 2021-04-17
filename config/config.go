@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/burntsushi/toml"
-	"github.com/clout-jam/api/data"
-	"github.com/clout-jam/api/lib/connect"
-	"github.com/clout-jam/api/lib/session"
+	"github.com/jesseokeya/go-rest-api-template/data"
+	"github.com/jesseokeya/go-rest-api-template/lib/connect"
+	"github.com/jesseokeya/go-rest-api-template/lib/session"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
 )
