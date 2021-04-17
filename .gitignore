@@ -1,0 +1,39 @@
+# Application
+bin/
+config/api.conf
+
+# Editor
+.idea/
+
+# Temp Directory
+tmp/
+
+# Mac specific
+.DS_Store
+*.sw?
+
+# Redis caches
+*.rdb
+
+# Log files
+*.log
+
+dump/
+*.aof
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+.env

@@ -1,0 +1,12 @@
+testing:
+  driver: postgres
+  open: user=template dbname=template_tests sslmode=disable
+development:
+  driver: postgres
+  open: user=template dbname=template sslmode=disable
+staging:
+  driver: postgres
+  open: user=template password=template host=localhost dbname=template sslmode=require
+production:
+  driver: postgres
+  pen: user=template password=template host=localhost dbname=template sslmode=require
