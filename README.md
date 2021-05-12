@@ -1,6 +1,6 @@
 # Go Template
 
-Go-chi, UpperDB Api Template
+Go-chi, UpperDB Rest Api Template
 
 ### Prerequisites
 
@@ -66,7 +66,7 @@ go test ./...
 
 ## Built With
 * [Chi](https://github.com/go-chi/chi) - The web framework used
-* [UpperDB](https://upper.io/v4/) - Data access layer for Go
+* [Upper DB](https://upper.io/v4/) - Data access layer for Go
 * [Air](https://github.com/cosmtrek/air) - Live reload for Go apps
 * [Goose](https://github.com/pressly/goose) - Database migrations
 
