@@ -2,16 +2,13 @@ package auth
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/go-chi/render"
 	"github.com/goware/emailx"
 	"github.com/jesseokeya/go-rest-api-template/data"
 	"github.com/jesseokeya/go-rest-api-template/data/presenter"
-	"github.com/jesseokeya/go-rest-api-template/lib/connect"
 	"github.com/jesseokeya/go-rest-api-template/server/api"
-	"github.com/rs/zerolog/log"
 	"github.com/upper/db/v4"
 )
 
@@ -68,29 +65,7 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 		FirstName:    newSignup.FirstName,
 		LastName:     newSignup.LastName,
 		Email:        emailx.Normalize(newSignup.Email),
-		Status:       data.UserStatusIncomplete,
 		PasswordHash: string(epw),
-	}
-
-	// Check if this user is a invite
-	if code := newSignup.Invite; code != "" {
-		func(code string, u *data.User) {
-			invite, err := data.DB.Invite.FindByCode(code)
-			if err != nil {
-				log.Error().Msgf("User signup invite with code %s: %v", code, err)
-				return
-			}
-
-			// Track who the inviter was
-			u.InviterID = &(invite.InviterID)
-			// Track when this "accepted" happened
-			invite.AcceptedAt = data.GetTimeUTCPointer()
-			_ = data.DB.Save(invite)
-
-			// Send a slack notification under the same thread as the original inviter's review request
-			inviter, _ := data.DB.User.FindByID(invite.InviterID)
-			connect.SL.SendThreadReply("signup", fmt.Sprintf("%s invite just signed up!", u.Email), inviter.Etc.ReviewID)
-		}(code, user)
 	}
 
 	if err := data.DB.Save(user); err != nil {
@@ -99,9 +74,5 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	presented := presenter.NewAuthUser(r.Context(), user)
-	presented.Intercom = &presenter.AuthIntercom{
-		HashID: connect.SG.GetUserKey(user.ID),
-		Hash:   connect.SG.GetUserHash(user.ID),
-	}
 	api.Render(w, r, presented)
 }

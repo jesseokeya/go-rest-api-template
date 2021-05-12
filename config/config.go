@@ -6,6 +6,7 @@ import (
 
 	"github.com/burntsushi/toml"
 	"github.com/jesseokeya/go-rest-api-template/data"
+	"github.com/jesseokeya/go-rest-api-template/lib/connect"
 	"github.com/jesseokeya/go-rest-api-template/lib/session"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
@@ -20,7 +21,7 @@ type Config struct {
 	DB data.DBConf `toml:"db"`
 
 	// [connect]
-	// Connect connect.Configs `toml:"connect"`
+	Connect connect.Configs `toml:"connect"`
 
 	// [jwt]
 	JWT session.Config `toml:"jwt"`

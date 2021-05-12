@@ -10,3 +10,9 @@ type ContextKey struct {
 func (k *ContextKey) String() string {
 	return "chi context value " + k.Name
 }
+
+var (
+	// SessionCtxKey is the context.Context key to store the request context.
+	SessionUserCtxKey = &ContextKey{Name: "Session.User"}
+	SessionRoleCtxKey = &ContextKey{Name: "Session.Role"}
+)

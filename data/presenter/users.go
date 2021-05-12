@@ -12,23 +12,14 @@ import (
 // User holds a pointer to the postgres user data structure
 type User struct {
 	*data.User
-	ID         int64       `json:"id"`
-	Name       string      `json:"name"`
-	HasProfile bool        `json:"hasProfile"`
-	Etc        interface{} `json:"etc"`
-	CreatedAt  interface{} `json:"createdAt"`
-	UpdatedAt  interface{} `json:"updatedAt"`
-}
-
-// Homework holds refernce to user lessons
-type Homework struct {
-	*data.UserLesson
-	*data.Lesson
-	*User
+	ID        int64       `json:"id"`
+	Name      string      `json:"name"`
+	Etc       interface{} `json:"etc"`
+	CreatedAt interface{} `json:"createdAt"`
+	UpdatedAt interface{} `json:"updatedAt"`
 }
 
 func (u *User) Render(w http.ResponseWriter, r *http.Request) error {
-	u.HasProfile = u.User.Etc.HasProfile
 	return nil
 }
 
