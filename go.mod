@@ -2,7 +2,7 @@ module github.com/jesseokeya/go-rest-api-template
 
 go 1.16
 
-replace github.com/jesseokeya/go-rest-api-template => /Users/jesseokeya/go/src/github.com/jesseokeya/go-rest-api-template
+// replace github.com/jesseokeya/go-rest-api-template => /Users/jesseokeya/go/src/github.com/jesseokeya/go-rest-api-template
 
 require (
 	github.com/burntsushi/toml v0.3.1
