@@ -6,10 +6,12 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/jwtauth"
 	"github.com/jesseokeya/go-rest-api-template/data"
 	"github.com/jesseokeya/go-rest-api-template/lib/session"
 	"github.com/jesseokeya/go-rest-api-template/server/api"
 	"github.com/jesseokeya/go-rest-api-template/server/auth"
+	"github.com/jesseokeya/go-rest-api-template/server/oauth"
 	"github.com/jesseokeya/go-rest-api-template/server/user"
 	"github.com/rs/zerolog"
 )
@@ -17,6 +19,7 @@ import (
 // Server holds refernces to other interfaces to be used
 type Server struct {
 	lg *zerolog.Logger
+	o  *oauth.OAuth
 
 	opts ServerOptions
 }
@@ -77,12 +80,12 @@ func (s *Server) Routes() chi.Router {
 	r.Get("/", healthCheck)
 
 	r.Group(func(r chi.Router) {
-		// r.Mount("/auth", s.o.Routes())
+		r.Mount("/auth", s.o.Routes())
 	})
 
 	r.Group(func(r chi.Router) {
 		// Seek, verify and validate JWT tokens
-		// r.Use(jwtauth.Verifier(s.o.Authority()))
+		r.Use(jwtauth.Verifier(s.o.Authority()))
 
 		// Handle valid / invalid tokens.
 		r.Use(auth.Authenticator)
