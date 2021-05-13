@@ -43,11 +43,6 @@ type AuthUser struct {
 	Token string `json:"token"`
 }
 
-type AuthIntercom struct {
-	HashID string `json:"hashId"`
-	Hash   string `json:"hash"`
-}
-
 func (u *AuthUser) Render(w http.ResponseWriter, r *http.Request) error {
 	claims := &session.Claims{UserID: u.ID}
 	_, u.JWT, _ = session.AU.Encode(claims)
