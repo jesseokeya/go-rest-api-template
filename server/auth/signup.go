@@ -17,7 +17,6 @@ type signupRequest struct {
 	LastName  string `json:"lastName"`
 	Email     string `json:"email"`
 	Password  string `json:"password"`
-	Invite    string `json:"invite"`
 }
 
 func (u *signupRequest) Bind(r *http.Request) error {
