@@ -45,6 +45,7 @@ func New(auth *session.Auth, db *data.Database, options ...ServerOption) (*Serve
 	})
 	s := &Server{
 		lg: &logger,
+		o:  oauth.New(auth, db),
 	}
 
 	for _, opt := range options {
