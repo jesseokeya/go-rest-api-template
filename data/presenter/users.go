@@ -29,6 +29,7 @@ func NewUser(ctx context.Context, user *data.User) *User {
 		User: user,
 	}
 
+	presented.ID = user.ID
 	presented.Name = user.FirstName
 	if user.LastName != "" {
 		presented.Name = fmt.Sprintf("%s %s", presented.Name, user.LastName)

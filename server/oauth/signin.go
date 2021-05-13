@@ -42,7 +42,6 @@ func (o *OAuth) Signin(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, api.ErrPermissionDenied.Error(), http.StatusUnauthorized)
 		return
 	}
-
 	presented := presenter.NewAuthUser(r.Context(), user)
 	api.Render(w, r, presented)
 }

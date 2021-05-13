@@ -13,10 +13,6 @@ import (
 )
 
 var (
-	// SessionCtxKey is the context.Context key to store the request context.
-	SessionUserCtxKey = &api.ContextKey{Name: "Session.User"}
-	SessionRoleCtxKey = &api.ContextKey{Name: "Session.Role"}
-
 	ErrNoToken          = errors.New("no token context")
 	ErrInvalidToken     = errors.New("invalid token")
 	ErrInvalidClaimUser = errors.New("invalid claim userId")
@@ -75,8 +71,8 @@ func SessionCtx(next http.Handler) http.Handler {
 			return
 		}
 
-		ctx = context.WithValue(ctx, SessionRoleCtxKey, user.Role)
-		ctx = context.WithValue(ctx, SessionUserCtxKey, user)
+		ctx = context.WithValue(ctx, api.SessionRoleCtxKey, user.Role)
+		ctx = context.WithValue(ctx, api.SessionUserCtxKey, user)
 
 		api.LogEntrySetField(r, "sessionId", user.ID)
 		next.ServeHTTP(w, r.WithContext(ctx))
