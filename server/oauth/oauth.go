@@ -28,6 +28,12 @@ func New(tokAuth *session.Auth, db *data.Database) *OAuth {
 	// [oauth manager]
 	manager := manage.NewDefaultManager()
 
+	// [oauth token store]
+	manager.MapTokenStorage(db.OAuthToken)
+
+	// [oauth client store]
+	manager.MapClientStorage(db.OAuthClient)
+
 	srv := server.NewDefaultServer(manager)
 	srv.SetAllowGetAccessRequest(true)
 	srv.SetClientInfoHandler(server.ClientFormHandler)

@@ -11,8 +11,9 @@ import (
 // Database holds database postgres table structure
 type Database struct {
 	db.Session
-
-	User *UsersStore
+	OAuthToken  *OAuthTokensStore
+	OAuthClient *OAuthClientsStore
+	User        *UsersStore
 }
 
 // DBConf database configuration
