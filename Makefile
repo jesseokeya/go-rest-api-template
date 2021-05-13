@@ -80,5 +80,6 @@ run: conf
 
 build:
 	@mkdir -p ./bin
-	GO111MODULE=on GOGC=off go build -gcflags=-trimpath=${GOPATH} -asmflags=-trimpath=${GOPATH} -i -o ./bin/api ./cmd/api/main.go
+	GO111MODULE=on GOGC=off go build -gcflags=-trimpath=${GOPATH} -asmflags=-trimpath=${GOPATH} -o ./bin/api ./cmd/api/main.go
+	GO111MODULE=on GOGC=off go build -gcflags=-trimpath=${GOPATH} -asmflags=-trimpath=${GOPATH} -o ./bin/migrate ./cmd/migrate/main.go
 	
