@@ -1,5 +1,5 @@
 # STAGE 1: BUILD
-FROM golang:1.15.7-alpine3.13
+FROM golang:1.18.8-alpine3.16
 ADD . /app
 WORKDIR /app
 
@@ -23,9 +23,10 @@ RUN GOGC=off CGO_ENABLED=0 GOOS=linux go build -gcflags=-trimpath=${GOPATH} -asm
 
 # STAGE 2: SCRATCH BINARY
 FROM scratch
-COPY /app/db /db
+COPY --from=0 ./app/db /db
+COPY --from=0 ./app/config /config
 COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=0 ./app/bin/main /bin/main
+COPY --from=0 ./app/bin/api /bin/api
 COPY --from=0 ./app/bin/migrate /bin/migrate
 
 CMD ["/bin/api"]
