@@ -1,12 +1,12 @@
-version: "3.7"
+version: "3.8"
 services:
   database:
     image: postgres
     restart: always
     environment:
-      - POSTGRES_USER="template"
-      - POSTGRES_PASSWORD=""
-      - POSTGRES_DB="template"
+      - POSTGRES_USER=template
+      - POSTGRES_PASSWORD=template
+      - POSTGRES_DB=template
     ports:
       - "5432:5432"
     volumes:
